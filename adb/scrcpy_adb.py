@@ -27,9 +27,10 @@ class ScrcpyADB:
             self.last_screen = frame
             # try:
             #     result = self.yolo(frame)
+            #     print(result)
             #     for obj in result:
             #         color = (0, 255, 0)
-            #         if obj.label == 1:
+            #         if obj.label == 0:
             #             color = (255, 0, 0)
             #         elif obj.label == 5:
             #             color = (0, 0, 255)
@@ -43,7 +44,7 @@ class ScrcpyADB:
             #
             # except Exception as e:
             #     print(e)
-            #
+
             # cv.imshow('frame', frame)
             # cv.waitKey(1)
 

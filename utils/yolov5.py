@@ -86,8 +86,8 @@ class YoloV5s:
 
         # original pretrained model from https://github.com/ultralytics/yolov5
         # the ncnn model https://github.com/nihui/ncnn-assets/tree/master/models
-        self.net.load_param('yolov5s.param')
-        self.net.load_model("yolov5s.bin")
+        self.net.load_param('ncnn.param')
+        self.net.load_model("ncnn.bin")
 
         self.grid = [make_grid(10, 6), make_grid(20, 12), make_grid(40, 24)]
         self.stride = np.array([32, 16, 8])
@@ -151,10 +151,11 @@ class YoloV5s:
         ex = self.net.create_extractor()
         ex.input("images", mat_in_pad)
 
+        # 改动部分 Permute
         # anchor setting from yolov5/models/yolov5s.yaml
         ret1, mat_out1 = ex.extract("output")  # stride 8
-        ret2, mat_out2 = ex.extract("353")  # stride 16
-        ret3, mat_out3 = ex.extract("367")  # stride 32
+        ret2, mat_out2 = ex.extract("354")  # stride 16
+        ret3, mat_out3 = ex.extract("366")  # stride 32
 
         pred = [np.array(mat_out3), np.array(mat_out2), np.array(mat_out1)]
         z = []
